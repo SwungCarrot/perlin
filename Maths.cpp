@@ -13,8 +13,7 @@ namespace Maths {
         const FVec g = RandCorners(c);
         const FVec d = FromCorners(x, y, c);
         FFloat n = FVecDot(d, g);
-        float u = Fade(x - c.x0);
-        float v = Fade(y - c.y0);
+        Vector2 uv = VecFade({x - c.x0, y - c.y0});
 
     }
 
@@ -81,6 +80,10 @@ namespace Maths {
 
     float Maths::Fade(const float t) {
         return 6* std::pow(t, 5.f) - 15 * std::pow(t, 4.f) + 10 * std::pow(t, 3.f);
+    }
+
+    Vector2 Maths::VecFade(const Vector2 vec) {
+        return { Fade(vec.x), Fade(vec.y) };
     }
 
     float Maths::Lerp(const float start, const float end, const float factor) {

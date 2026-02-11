@@ -46,6 +46,9 @@ namespace Maths {
         //interpolation fade function. used in getting the factor for lerp
         static float Fade(float t);
 
+        //wrapper for Fade() in vec form
+        static Vector2 VecFade(Vector2 vec);
+
         //linear interpolation
         static float Lerp(float start, float end, float factor);
 
