@@ -8,13 +8,21 @@
 
 namespace Maths {
 
-    Vector2 Maths::Calculate(const float x, const float y) {
+    float Maths::Calculate(const float x, const float y) {
+        //get cell corners
         const FInt c = GetC(x, y);
+        //get pseudo-rand vectors at corners
         const FVec g = RandCorners(c);
+        //get displacement vectors from corners
         const FVec d = FromCorners(x, y, c);
-        FFloat n = FVecDot(d, g);
-        Vector2 uv = VecFade({x - c.x0, y - c.y0});
-
+        //calculate dotproducts
+        const FFloat n = FVecDot(d, g);
+        const Vector2 uv = VecFade({x - c.x0, y - c.y0});
+        //linear interpolation for the xs
+        const float x0 = Lerp(n.f00, n.f10, uv.x);
+        const float x1 = Lerp(n.f01, n.f11, uv.x);
+        //return final y value at this point
+        return Lerp(x0, x1, uv.y);
     }
 
     FInt Maths::GetC(const float x, const float y) {

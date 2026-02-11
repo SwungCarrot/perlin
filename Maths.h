@@ -13,7 +13,7 @@ namespace Maths {
     class Maths {
         public:
         //gives vector at given place
-        Vector2 Calculate(float x, float y);
+        float Calculate(float x, float y);
 
         private:
         //get the integer corners from float coords

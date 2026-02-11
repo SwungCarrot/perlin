@@ -12,6 +12,8 @@ add_executable(perlin main.cpp
         Maths.h
         FVec.h
         FInt.h
-        FFloat.h)
+        FFloat.h
+        Render.cpp
+        Render.h)
 
 target_link_libraries(perlin PRIVATE raylib)

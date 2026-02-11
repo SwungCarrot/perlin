@@ -1,13 +1,11 @@
 #include <iostream>
 #include <list>
+#include "raylib.h"
 
 int main() {
-    std::list<std::list<float>> grid;
-    for (int x = 0; x < 100; x++) {
-        for (int y = 0; y < 100; y++) {
-            //do thing
+    InitWindow(1280, 720, "perlin");
+    SetTargetFPS(60);
+    while (!WindowShouldClose()) {
 
-        }
     }
-
 }
