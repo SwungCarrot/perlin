@@ -10,7 +10,8 @@ namespace Render {
     public:
         static void DrawFrame();
         private:
-        const float Scale = 1.0f;
+        //stretch amount for the noise
+        static constexpr float Scale = 0.01f;
     };
 } // Render
 

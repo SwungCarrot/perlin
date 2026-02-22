@@ -13,26 +13,23 @@ namespace Maths {
     class Maths {
         public:
         //gives vector at given place
-        float Calculate(float x, float y);
+        static float Calculate(Vector2 in);
 
         private:
         //get the integer corners from float coords
         static FInt GetC(float x, float y);
 
         //fast hash function
-        [[nodiscard]] int Hash(int x, int y) const;
-
-        //turns hash into angle
-        float AngleIse(int hash) const;
+        static int Hash(int x, int y);
 
         //turns angle to a vector
         static Vector2 ToVector(float angle);
 
         //gets the randomised corner vec
-        Vector2 CalculateRandCornerVec(int x, int y) const;
+        static Vector2 CalculateRandCornerVec(int x, int y);
 
         //returns FVec for the random corner vecs
-        FVec RandCorners(FInt c) const;
+        static FVec RandCorners(FInt c);
 
         //returns FVec from corners to point for meshing
         static FVec FromCorners(float x, float y, FInt c);
@@ -52,13 +49,19 @@ namespace Maths {
         //linear interpolation
         static float Lerp(float start, float end, float factor);
 
+        //random seed generator
+        static int GenSeed();
+
         //hashing consts
-        const int A = 374761393;
-        const int B = 668265263;
-        const int Shift = 13;
+        static constexpr int A = 374761393;
+        static constexpr int B = 668265263;
+        static constexpr int Shift = 13;
 
         //rand resolution constant. prefers powers of 2
-        const int N = 255;
+        static constexpr int N = 255;
+
+        //seed
+        static constexpr int WorldSeed = 1224652887586574;
     };
 } // Maths
 
