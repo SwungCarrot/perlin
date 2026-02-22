@@ -9,6 +9,8 @@
 #include "raylib.h"
 #include <cmath>
 #include <cstdlib>
+#include <iostream>
+#include <md5.h>
 
 namespace Maths {
 
@@ -48,10 +50,20 @@ namespace Maths {
     }
 
     int Maths::Hash(const int x, const int y) {
+        /*
         int hash = WorldSeed;
         hash ^= x * A + B * y; // suppress NOLINT(*-narrowing-conversions)
         hash ^= hash >> Shift;
         return hash;
+        */
+        MD5_CTX context;
+        MD5Init(&context);
+        MD5Update(&context, (unsigned char *)&WorldSeed, sizeof(WorldSeed));
+        MD5Update(&context, (unsigned char *)&x, sizeof(x));
+        MD5Update(&context, (unsigned char *)&y, sizeof(y));
+        uint8_t digest[16];
+        MD5Final(digest, &context);
+        return *reinterpret_cast<int *>(digest);
     }
 
     Vector2 Maths::ToVector(const float angle) {
@@ -61,7 +73,6 @@ namespace Maths {
     Vector2 Maths::CalculateRandCornerVec(const int x, const int y) {
         const int hash = Hash(x, y);
         const float angle = (hash & 0xFFFF) / 65535.0f * 2.0f * M_PI;
-
         return ToVector(angle);
     }
 

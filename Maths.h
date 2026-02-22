@@ -61,7 +61,7 @@ namespace Maths {
         static constexpr int N = 255;
 
         //seed
-        static constexpr int WorldSeed = 1224652887586574;
+        static constexpr int WorldSeed = 126575574;
     };
 } // Maths
 
